@@ -77,6 +77,8 @@ class MySQLObject(AbstractExtObject):
         """
         conn_kwargs = copy.deepcopy(context.app_config['mysql'])
         conn_kwargs.pop('remote', None)
+        conn_kwargs['port'] = '13306'
+        context.log.debug('MySQLd port: %s' % conn_kwargs['port'])
         # open a connection
         try:
             return pymysql.connect(**conn_kwargs)
